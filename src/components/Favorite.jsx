@@ -11,19 +11,19 @@ const Favourites = () => {
     <Container>
       <Row>
         <Col sm={12}>
-          <ul style={{ listStyle: "none" }}>
+          <ul  style={{ listStyle: "none" }}>
             {favorite.map((jobs, i) => (
               <div>
-                <li key={i} className="my-4">
+                <li key={i} className="my-4 favcontent">
                   <Button
                     variant="danger"
                     onClick={() => dispatch(removeFromFavoriteAction(i))}
                   >
                     <MdOutlineRemoveCircle />
                   </Button>
-                  <span className="mx-5">{jobs.title}</span>
-                  <span className="mx-5">{jobs.company_name}</span>
-                  <span className="mx-5">{jobs.job_type}</span>
+                  <span className="mx-5 ">{jobs.title}</span>
+                  <span className="mx-5 ">{jobs.company_name}</span>
+                  <span className="mx-5 ">{jobs.job_type}</span>
                 </li>
               </div>
             ))}

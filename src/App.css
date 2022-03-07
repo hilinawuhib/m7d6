@@ -67,3 +67,10 @@ a {
 .navtxt {
   color: rgb(182, 172, 172) !important;
 }
+
+.favcontent{
+  border:black 1px solid; 
+  margin-bottom:20px;
+  padding:5px;
+  border-radius:10px;
+}

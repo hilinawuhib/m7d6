@@ -11,14 +11,12 @@ const Search = () => {
   const [query, setQuery] = useState("");
   const dispatch = useDispatch();
 
-
   const handleChange = (e) => {
     setQuery(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     dispatch(fetchJobs(query));
   };
 
