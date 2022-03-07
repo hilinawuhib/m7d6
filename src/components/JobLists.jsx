@@ -1,29 +1,21 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
-import { fetchJobs } from "../redux/actions";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { AiFillHeart } from "react-icons/ai";
 import { BsHeart } from "react-icons/bs";
 import { removeFromFavoriteAction } from "../redux/actions";
 import { addToFavoriteAction } from "../redux/actions";
 
-const mapStateToProps = (state) => ({
-  favorites: state.favorite.jobset,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  GET_JOBS: (query) => dispatch(fetchJobs(query)),
-  removeFromFavorites: (index) => dispatch(removeFromFavoriteAction(index)),
-  addToFavorites: (index) => dispatch(addToFavoriteAction(index)),
-});
-
-const JobList = ({ data, favorites, addToFavorites, removeFromFavorites }) => {
+const JobList = ({ data }) => {
+  const favorites = useSelector((state) => state.favorite.jobset);
+  const dispatch = useDispatch();
   const isFavorite = favorites.includes(data);
   console.log(isFavorite, favorites);
   const toggleFavorite = () => {
-    isFavorite ? removeFromFavorites(data) : addToFavorites(data);
+    isFavorite
+      ? dispatch(removeFromFavoriteAction(data))
+      : dispatch(addToFavoriteAction(data));
   };
   return (
     <Row className="mt-5 joblist">
@@ -60,4 +52,4 @@ const JobList = ({ data, favorites, addToFavorites, removeFromFavorites }) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(JobList);
+export default JobList;

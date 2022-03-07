@@ -2,12 +2,11 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { connect } from "react-redux";
-const mapStateToProps = (state) => ({
-  favorite: state.favorite.jobs,
-});
+import { useSelector } from "react-redux";
+
 
 const MyNavbar = () => {
+  const favorite = useSelector((state) => state.favorite.jobset);
   const navigate = useNavigate();
   return (
     <>
@@ -23,4 +22,4 @@ const MyNavbar = () => {
   );
 };
 
-export default connect(mapStateToProps)(MyNavbar);
+export default MyNavbar;

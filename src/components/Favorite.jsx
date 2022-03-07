@@ -1,20 +1,12 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { MdOutlineRemoveCircle } from "react-icons/md";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { removeFromFavoriteAction } from "../redux/actions";
 
-const mapStateToProps = (state) => ({
-  favorite: state.favorite.jobset,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  removeFromFavorites: (index) => {
-    dispatch(removeFromFavoriteAction(index));
-  },
-});
-
-const Favourites = ({ favorite, removeFromFavorites }) => {
+const Favourites = () => {
+  const favorite = useSelector((state) => state.favorite.jobset);
+  const dispatch = useDispatch();
   return (
     <Container>
       <Row>
@@ -25,7 +17,7 @@ const Favourites = ({ favorite, removeFromFavorites }) => {
                 <li key={i} className="my-4">
                   <Button
                     variant="danger"
-                    onClick={() => removeFromFavorites(i)}
+                    onClick={() => dispatch(removeFromFavoriteAction(i))}
                   >
                     <MdOutlineRemoveCircle />
                   </Button>
@@ -42,4 +34,4 @@ const Favourites = ({ favorite, removeFromFavorites }) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Favourites);
+export default Favourites;
